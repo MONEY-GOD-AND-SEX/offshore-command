@@ -1,0 +1,11 @@
+{
+  "name": "Offshore Command",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "postCreateCommand": "python -m unittest discover -s tests -v",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "settings": {"python.testing.unittestEnabled": true, "python.testing.unittestArgs": ["-s", "tests"]}
+    }
+  }
+}
