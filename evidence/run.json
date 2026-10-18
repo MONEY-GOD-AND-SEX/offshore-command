@@ -1,0 +1,74 @@
+{
+  "input": "synthetic training fixture",
+  "execution": "real SQLite transactions and backup restore",
+  "commands": [
+    {
+      "command": "vessel.create",
+      "result": {
+        "vessel": "training-vessel"
+      }
+    },
+    {
+      "command": "crew.register",
+      "result": {
+        "crew": "operator-1"
+      }
+    },
+    {
+      "command": "certificate.set",
+      "result": {
+        "crew": "operator-1",
+        "certificate": "BST",
+        "expires": 1800001000
+      }
+    },
+    {
+      "command": "station.configure",
+      "result": {
+        "station": "muster-a"
+      }
+    },
+    {
+      "command": "drill.start",
+      "result": {
+        "drill": "exercise-1",
+        "state": "active"
+      }
+    },
+    {
+      "command": "drill.check_in",
+      "result": {
+        "crew": "operator-1",
+        "station": "muster-a",
+        "duplicate": false
+      }
+    },
+    {
+      "command": "drill.close",
+      "result": {
+        "drill": "exercise-1",
+        "state": "closed",
+        "elapsed_seconds": 0
+      }
+    }
+  ],
+  "restored_report": {
+    "drill": "exercise-1",
+    "missing": [],
+    "ready": true,
+    "state": "closed",
+    "stations": [
+      {
+        "capacity": 4,
+        "deficit": 0,
+        "eligible": 1,
+        "minimum": 1,
+        "present": 1,
+        "station": "muster-a"
+      }
+    ],
+    "vessel": "training-vessel"
+  },
+  "audit_valid": true,
+  "events": 7
+}
