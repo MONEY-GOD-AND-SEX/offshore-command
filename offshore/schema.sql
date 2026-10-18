@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS vessels(id TEXT PRIMARY KEY);
+CREATE TABLE IF NOT EXISTS crew(id TEXT PRIMARY KEY, vessel TEXT NOT NULL REFERENCES vessels(id), name TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS certificates(crew TEXT REFERENCES crew(id), kind TEXT, expires INTEGER NOT NULL, PRIMARY KEY(crew,kind));
+CREATE TABLE IF NOT EXISTS stations(vessel TEXT REFERENCES vessels(id), id TEXT, minimum INTEGER NOT NULL CHECK(minimum >= 0), capacity INTEGER NOT NULL CHECK(capacity >= minimum), certificate TEXT NOT NULL, PRIMARY KEY(vessel,id));
+CREATE TABLE IF NOT EXISTS drills(id TEXT PRIMARY KEY, vessel TEXT NOT NULL REFERENCES vessels(id), state TEXT NOT NULL CHECK(state IN ('active','closed')), started INTEGER NOT NULL, ended INTEGER);
+CREATE UNIQUE INDEX IF NOT EXISTS one_active_drill ON drills(vessel) WHERE state='active';
+CREATE TABLE IF NOT EXISTS manifest(drill TEXT REFERENCES drills(id), crew TEXT REFERENCES crew(id), PRIMARY KEY(drill,crew));
+CREATE TABLE IF NOT EXISTS drill_stations(drill TEXT REFERENCES drills(id), id TEXT, minimum INTEGER NOT NULL, capacity INTEGER NOT NULL, certificate TEXT NOT NULL, PRIMARY KEY(drill,id));
+CREATE TABLE IF NOT EXISTS attendance(drill TEXT, crew TEXT, station TEXT, recorded INTEGER NOT NULL, PRIMARY KEY(drill,crew), FOREIGN KEY(drill,crew) REFERENCES manifest(drill,crew), FOREIGN KEY(drill,station) REFERENCES drill_stations(drill,id));
+CREATE TABLE IF NOT EXISTS requests(key TEXT PRIMARY KEY, digest TEXT NOT NULL, result TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS closed_reports(drill TEXT PRIMARY KEY REFERENCES drills(id), report TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS events(seq INTEGER PRIMARY KEY AUTOINCREMENT, at INTEGER NOT NULL, actor TEXT NOT NULL, kind TEXT NOT NULL, payload TEXT NOT NULL, previous TEXT NOT NULL, digest TEXT NOT NULL);
+CREATE TRIGGER IF NOT EXISTS events_no_update BEFORE UPDATE ON events BEGIN SELECT RAISE(ABORT,'append-only audit'); END;
+CREATE TRIGGER IF NOT EXISTS events_no_delete BEFORE DELETE ON events BEGIN SELECT RAISE(ABORT,'append-only audit'); END;
