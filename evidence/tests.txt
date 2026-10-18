@@ -1,0 +1,23 @@
+test_audit_rejects_mutation_and_detects_altered_content (test_operations.OperationsTests.test_audit_rejects_mutation_and_detects_altered_content) ... ok
+test_concurrent_writers_cannot_overbook (test_operations.OperationsTests.test_concurrent_writers_cannot_overbook) ... ok
+test_duplicate_attendance_does_not_duplicate_people (test_operations.OperationsTests.test_duplicate_attendance_does_not_duplicate_people) ... ok
+test_expiry_after_arrival_blocks_closure (test_operations.OperationsTests.test_expiry_after_arrival_blocks_closure) ... ok
+test_failed_command_has_no_partial_audit_or_request (test_operations.OperationsTests.test_failed_command_has_no_partial_audit_or_request) ... ok
+test_full_lifecycle_survives_restart_and_backup (test_operations.OperationsTests.test_full_lifecycle_survives_restart_and_backup) ... ok
+test_invalid_parameters (test_operations.OperationsTests.test_invalid_parameters) ... ok
+test_isolation_missing_qualification_and_station_conflict (test_operations.OperationsTests.test_isolation_missing_qualification_and_station_conflict) ... ok
+test_manifest_and_station_requirements_are_snapshotted (test_operations.OperationsTests.test_manifest_and_station_requirements_are_snapshotted) ... ok
+test_one_active_drill_per_vessel (test_operations.OperationsTests.test_one_active_drill_per_vessel) ... ok
+test_retry_is_exact_and_conflicting_reuse_rolls_back (test_operations.OperationsTests.test_retry_is_exact_and_conflicting_reuse_rolls_back) ... ok
+test_export_preserves_engine_attendance_and_feasible_plan (test_pages.PagesTests.test_export_preserves_engine_attendance_and_feasible_plan) ... ok
+test_closed_report_does_not_change_with_certificate_renewal (test_planner.PlannerTests.test_closed_report_does_not_change_with_certificate_renewal) ... ok
+test_expired_fixed_member_is_not_eligible (test_planner.PlannerTests.test_expired_fixed_member_is_not_eligible) ... ok
+test_keeps_actual_attendance_fixed (test_planner.PlannerTests.test_keeps_actual_attendance_fixed) ... ok
+test_reports_impossible_qualification_without_claiming_readiness (test_planner.PlannerTests.test_reports_impossible_qualification_without_claiming_readiness) ... ok
+test_reroutes_flexible_crew_to_preserve_scarce_qualification (test_planner.PlannerTests.test_reroutes_flexible_crew_to_preserve_scarce_qualification) ... ok
+test_solver_matches_exhaustive_feasibility_for_small_graphs (test_planner.PlannerTests.test_solver_matches_exhaustive_feasibility_for_small_graphs) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.522s
+
+OK
