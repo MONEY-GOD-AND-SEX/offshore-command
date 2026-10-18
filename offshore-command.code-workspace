@@ -1,0 +1,8 @@
+{
+  "folders": [{"path": "."}],
+  "settings": {"files.exclude": {"**/__pycache__": true}, "editor.insertSpaces": true, "editor.tabSize": 4},
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [{"name": "Verify audit", "type": "debugpy", "request": "launch", "module": "offshore", "args": ["verify"]}]
+  }
+}
